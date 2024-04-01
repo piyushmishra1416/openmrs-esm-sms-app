@@ -1,15 +1,23 @@
-@use '@carbon/styles/scss/spacing';
-@use '@carbon/styles/scss/type';
+@use "@carbon/colors";
+@use "@carbon/layout";
+@use "@carbon/type";
 
-.container {
-  padding: spacing.$spacing-07;
+.main {
+  background-color: colors.$white-0;
 }
 
-.welcome {
-  @include type.type-style('heading-04');
-  margin: spacing.$spacing-05 0; 
+.moduleHeader {
+  @include type.type-style('heading-03');
+  padding-left: layout.$spacing-05;
+  padding-top: layout.$spacing-05;
+  padding-bottom: layout.$spacing-05;
 }
 
-.explainer {
-  margin-bottom: 2rem;
+.tabList {
+  padding: 0 layout.$spacing-05;
+}
+
+.tabPanel {
+  height: 100%;
+  background-color: colors.$gray-10;
 }

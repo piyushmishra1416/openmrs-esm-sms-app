@@ -1,44 +1,38 @@
-/**
- * From here, the application is pretty typical React, but with lots of
- * support from `@openmrs/esm-framework`. Check out `Greeter` to see
- * usage of the configuration system, and check out `PatientGetter` to
- * see data fetching using the OpenMRS FHIR API.
- *
- * Check out the Config docs:
- *   https://openmrs.github.io/openmrs-esm-core/#/main/config
- */
-
-import React from "react";
-import { useTranslation } from "react-i18next";
-import { Boxes } from "./boxes/slot/boxes.component";
-import Greeter from "./greeter/greeter.component";
-import PatientGetter from "./patient-getter/patient-getter.component";
-import Resources from "./resources/resources.component";
-import styles from "./root.scss";
+import React from 'react';
+import { Tab, Tabs, TabList, TabPanels, TabPanel } from '@carbon/react';
+import { useTranslation } from 'react-i18next';
+// import Import from './import/import.component';
+// import PreviousImports from './previous-imports/previous-imports.component';
+// import Subscription from './subscription/subscription.component';
+import styles from './root.scss';
+import SendSMS from './sendSms/send-sms.component';
+import Settings from './settings/settings.component';
+// import Logs from './logs/logs.component';
 
 const Root: React.FC = () => {
   const { t } = useTranslation();
-
   return (
-    <div className={styles.container}>
-      <h3 className={styles.welcome}>
-        {t("welcomeText", "Welcome to the O3 Template app")}
-      </h3>
-      <p className={styles.explainer}>
-        {t(
-          "explainer",
-          "The following examples demonstrate some key features of the O3 framework"
-        )}
-        .
-      </p>
-      {/* Greeter: demonstrates the configuration system */}
-      <Greeter />
-      {/* Boxes: demonstrates the extension system */}
-      <Boxes />
-      {/* PatientGetter: demonstrates data fetching */}
-      <PatientGetter />
-      <Resources />
-    </div>
+    <main className={`omrs-main-content ${styles.main}`}>
+      <h3 className={styles.moduleHeader}>{t('moduleTitle', 'SMS Module')}</h3>
+      <Tabs>
+        <TabList aria-label="OCL tabs" className={styles.tabList} contained={true}>
+          <Tab>{t('subscription', 'Send SMS')} </Tab>
+          <Tab>{t('import', 'Settings')} </Tab>
+          <Tab>{t('previousImports', 'Logs')} </Tab>
+        </TabList>
+        <TabPanels>
+          <TabPanel className={styles.tabPanel}>
+            <SendSMS/>
+          </TabPanel>
+          <TabPanel className={styles.tabPanel}>
+           <Settings/>
+          </TabPanel>
+          <TabPanel className={styles.tabPanel}>
+            {/* <Logs/> */}
+          </TabPanel>
+        </TabPanels>
+      </Tabs>
+    </main>
   );
 };
 
